@@ -1,45 +1,48 @@
-# **Explicacion del caso fictisio para la generacion del software**.
-### La empresa Gallinas Felices es productora de huevos, tiene un galpon de gallinas ponedoras y lo manejan diferentes empleados encabezado por el dueño de la empresa. Esta empresa  quiere un software unicamente para el personal de la empresa y el dueño, en donde se puedan registrar los datos necesarios para la generacion de informes de produccion, de ventas y de gastos.
-# **Alcance MVP**
+# Explicación del caso ficticio para la generación del software.
+### La empresa Gallinas Felices es productora de huevos, tiene un galpon de gallinas ponedoras y lo manejan empleados encabezado por un jefe. Esta empresa quiere un software, para los empleados y el jefe, de gestion empresarial. Es decir, registrar los gastos, las ventas y la produccion de huevos con el fin de generar un informe detallado y claro que muestre el ingreso bruto de la empresa.
+# Alcance MVP
 
-## **Funcionalidades incluidas** 
+## Funcionalidades incluidas
 - ### Se podra generar informes generales de la empresa por mes o por semana. 
 - ### Se podra generar diferentes informes: informes de gastos, informes de ventas, informes de produccion.
 - ### Se podra registrar la produccion por dia (huevos recolectados)
 - ### Se podra registrar el valor del huevo en pesos argentinos
 - ### Se podra registrar las ventas totales de huevos por dia. 
-- ### Se podra registrar gastos mensuales, semanales o diarias que el usuario considere como el sueldo de empleados, alquiler del terreno(Si tiene) alimento para gallinas, servicios.
+- ### Se podra registrar gastos, por un rango o por una fecha en esepecifico, que el usuario considere como el sueldo de empleados, alquiler del terreno(Si tiene) alimento para gallinas, servicios de luz, agua etc.
 - ### Se podra agregar usuarios o eliminar usuarios al software
 
-## **Funcionalidades no incluidas**
-- ### Estimar rendimiento a futuro
+## Funcionalidades no incluidas
+- ### Estimar rendimiento a futuro o predecir informes
+- ### Asignar roles o permisos a usuarios registrados.
+- ### Reflejar el gasto en un informe cuando no se a concluido el pago del gasto.
 - ### Visualizar graficos comparativos de datos e informes
-- ### Chat integrado entre empleados o servicio de mensajeria con usuarios finales
 - ### Registrar promociones o descuentos contemplados en ventas
 - ### Registrar rendimiento de empleados de empresa
 
-# **Historias de usuario**
-### #1 Como administrador quiero agregar un empleado para que este pueda usar el software.
-### #2 Como administrador quiero eliminar un empleado registrado en el software para que ya no pueda tocar nada de mi empresa.
-### #3 Como administrador quiero registrar el precio del huevo para que sea contemplado en los informe de ventas.
-### #4 Como administrador quiero registrar el sueldo de un empleado para que sea contemplado en el informe de gastos.
+# Historias de usuario
+### #1 Como administrador quiero registrar un empleado para que gestione el software.
+### #2 Como administrador quiero eliminar un empleado registrado para que ya no use permanentemente el software.
+### #3 Como administrador quiero desactivar un empleado registrado para que no use momentaneamente el software.
 
-### #5 Como empleado quiero registrar un gasto mensual sea contemplado en el informe de gastos.
-### #6 Como empleado quiero modificar un gasto mensual para corregir un dato mal cargado.
-### #7 Como empleado quiero eliminar un gasto mensual para que no sea contemplado en el infome de gastos.
+### #4 Como administrador quiero registrar el precio del huevo para que sea reflejado en los informes de ventas.
+### #5 Como administrador quiero modificar el precio del huevo para ajustarlo a cambios en el mercado
 
-### #5 Como empleado quiero registrar un gasto por una fecha para que sea contemplado en el informe de gastos.
-### #6 Como empleado quiero modificar un gasto por una fecha para corregir un dato mal cargado
-### #7 Como empleado quiero eliminar un gasto por una fecha para que no sea contemplado en el informe de gastos.
+### #6 Como administrador quiero registrar el sueldo de un empleado para que sea contemplado en el informe de gastos.
+### #7 Como administrador quiero modificar el sueldo de un empleado para ajustarlo a aumentos o ascensos.
 
+### #8 Como empleado quiero registrar un tipo de gasto por una fecha para que sea contemplado en el informe de gastos.
+### #9 Como empleado quiero modificar un tipo de gasto por una fecha para no falsear el informe de gastos.
+### #10 Como empleado quiero eliminar un tipo de gasto de una fecha para que no sea contemplado en el informe de gastos.
 
-### #8 Como empleado quiero registrar el gasto en la comida de gallinas que tuve en dicha fecha para que sea contemplado en el informe de gastos.
-### #9 Como empleado quiero registrar los huevos recolectados en una fecha para la elaboración del informe de producción.
-### #10 Como empleado quiero registrar las unidades vendidas de huevos que se obtuvo en una fecha para la elaboracion del informe de ventas
-### #11 Como empleado quiero poder modificar mi datos de inicio secion para personalizarlo a mi gusto
-### #12 Como empleado quiero modificar un gasto para arreglar un dato mal cargado
-### #13 Como empleado quiero eliminar un gasto para 
-### #14 Como empleado quiero 
-### #15
-## #16
-## #17
+### #11 Como empleado quiero registrar la producción de huevos por una fecha para que sea reflejado en el informe de producción.
+### #12 Como empleado quiero modificar la producción de huevos por una fecha para no falsear el informe de producción.
+### #13 Como empleado quiero eliminar la producción de huevos de una fecha para que no sea reflejado en el informe de producción.
+
+### #14 Como empleado quiero registrar las ventas de huevos por una fecha para que sea reflejado en el informe de ventas
+### #15 Como empleado quiero modificar las ventas de huevos por una fecha para que sea reflejado en el informe de ventas
+### #16 Como empleado quiero eliminar las ventas de huevos de una fecha para que no sea reflejado en el informe de ventas
+
+### #17 Como usuario registrado quiero modificar mis datos de inicio sesion para personalizarlo a mi gusto
+
+### #18 Como empleado quiero generar un tipo de informe por un periodo para visualizar el avance de la empresa
+### #19 Como empleado quiero ver el informe en pdf para poder descargarlo e imprimirlo

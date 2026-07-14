@@ -31,8 +31,16 @@
 
 **#16** Como empleado quiero eliminar las ventas de huevos de una fecha para que no sea reflejado en el informe de ventas
 
-**#17** Como usuario registrado quiero modificar mis datos de inicio sesion para personalizarlo a mi gusto
+**#17** Como usuario logueado quiero modificar mis datos de inicio sesion para personalizarlo a mi gusto
 
 **#18** Como empleado quiero generar un tipo de informe por un periodo para visualizar el avance de la empresa
 
-**#19** Como empleado quiero ver el informe en pdf para poder descargarlo e imprimirlo
+**#19** Como empleado quiero ver el informe en pdf para poder descargarlo e imprimirlo.
+
+**#20** Como usuario no logueado quiero iniciar sesion para usar el sistema.
+
+**#21** Como administrador quiero activar un usuario para que pueda volver a gestionar el sistema.
+
+**#22** Como administrador quiero filtrar empleados por un criterio para que pueda hacer cierta accion sobre esos empleados
+
+**#23** Como administrador quiero ver todos los empleados para ver cuales ya los registre en sistema

@@ -1,169 +1,436 @@
 
 ## Casos de uso
 
-// Se da por sentado que en la precondicion de todos los casos de uso, el sistema este levantado.
+#### A tener en cuenta
+- *Se da por sentado que en la precondicion de todos los casos de uso, el sistema este levantado.*
 
-// Se da por sentado que en la precondicion de todos los casos de uso, a menos que se diga lo contrario, el usuario este logueado
+- *Se da por sentado que en la precondicion de todos los casos de uso, a menos que se diga lo contrario, el usuario este logueado*
 
-// Se da por sentado que en los flujos alternativos, si ocurrio un error interno o en la infrasetructura del codigo, se avise al usuario que ocurrio un error inesperado y que intente mas tarde
+- *Se da por sentado que en los flujos alternativos, existira uno que avise al usuario, un mensaje de error, en caso de que ocurra un fallo interno o un error en la infrestructura del codigo*
 
-### #1
 
-Nombre: **REGISTRAR EMPLEADO**
+### #1 **INICIAR SESION**
 
-Actor: ADMINISTRADOR
+Actor: Usuario / Precondiciones: USUARIO NO LOGUEADO / Post condicion: USUARIO LOGUEADO
 
-Precondiciones: NINGUNA
+        Flujo principal:
 
-FLUJO PRINCIPAL:
+        1. Usuario pone sus datos
+        2. Sistema verifica si el usuario esta registrado
+        3. Sistema permite al usuario ingresar
 
-1. Administrador escribe los datos del nuevo usuario
-2. Administrador confirma creacion de nuevo usuario
-3. Sistema procesa la solicitud
-4. Sistema avisa proceso exitoso
+        Flujo alternativo 1: Sistema avisa al usuario que no esta registrado en sistema
 
-FLUJO ALTERNATIVO 1: Sistema avisa al usuario que ya esta registrado ese usuario en sistema.
+        Flujo alternativo 2: Sistema avisa al usuario que los datos son invalidos
 
-FLUJO ALTERNATIVO 2: Sistema avisa al usuario que los datos ingresados son invalidos
+### #2 **CERRAR SESION**
 
-                Post Condicion: EMPLEADO REGISTRADO
+Actor: Usuario / Precondiciones: USUARIO LOGUEADO / Post condicion: USUARIO NO LOGUEADO
 
-### #2
+        Flujo principal:
 
-Nombre: **ELIMINAR EMPLEADO**
+        1. El usuario solicita cerrar su sesion
+        2. El sistema cierra la sesion del usuario
 
-Actor: ADMINISTRADOR
+### #3 **MODIFICAR DATOS LOGUEO**
 
-Precondiciones: EMPLEADO SELECCIONADO
+Actor: Usuario / Precondiciones: Ninguna / Post condicion: USUARIO MODIFICADO
 
-FLUJO PRINCIPAL:
+        Flujo principal:
 
-1. Administrador elimina al empleado
-2. Administrador confima los cambios
-3. Sistema procesa la solicitud
-4. Sistema avisa proceso exitoso
+        1. El usuario accede a la modificacion de sus propios datos
+        2. El usuario modifica sus propios datos
+        3. El usuario guarda los cambios
+        4. Sistema verifica datos
+        5. Sistema avisa que sus datos fueron modificados exitosamente
 
-        Post Condicion: EMPLEADO ELIMINADO
+        Flujo alternativo 1: Sistema avisa al usuario que ya existe un usuario con esos mismos datos.
 
-### #3
+        Flujo alternativo 2: Sistema avisa que los datos son invalidos 
 
-Nombre: **DESACTIVAR EMPLEADO**
+### #4 **ASIGNAR PRECIO DEL HUEVO**
 
-Actor: ADMINISTRADOR
+Actor: Administrador / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO ASIGNADO
 
-Precondiciones: EMPLEADO SELECCIONADO. Empleado esta activado
+        Flujo principal:
 
-FLUJO PRINCIPAL:
+        1. El usuario solicita asignarle precio al huevo
+        2. El usuario guarda los cambios
+        4. El sistema verifica la solicitud
+        5. El sistema avisa que el proceso fue exitoso
 
-1. Administrador desactiva empleado
-2. Administrador guarda cambios
-3. Sistema procesa la solicitud
-4. Sistema avisa proceso exitoso.
+        Flujo alternativo 1: El sistema avisa proceso fallido, los datos son invalidos
 
-        Post Condicion: EMPLEADO DESACTIVADO
+### #5 **ASIGNAR SUELDO EMPLEADO**
 
+Actor: Administrador / Precondiciones: EMPLEADO SELECCIONADO / Post condicion: PRECIO DEL HUEVO ASIGNADO
 
-### #4 
-Nombre: **ACTIVAR EMPLEADO**
+        Flujo principal:
 
-Actor: ADMINISTRADOR
+        1. El administrador asigna un sueldo para el empleado
+        2. El administrador guarda los cambios
+        4. El sistema verifica el registro
+        5. El sistema avisa que el proceso fue exitoso
 
-Precondiciones: EMPLEADO SELECCIONADO. Empleado esta desactivado
 
-FLUJO PRINCIPAL:
+### #6 **VER EMPLEADOS**
 
-1. Administrador activa empleado
-2. Administrador guarda cambios
-3. Sistema procesa la solicitud
-4. Sistema avisa proceso exitoso
+Actor: Administrador / Precondiciones: Ninguna / Post Condicion: VIENDO LISTADO EMPLEADOS
 
-        Post Condicion: EMPLEADO ACTIVADO
+        Flujo principal:
 
-### #5
-Nombre: **VER EMPLEADOS**
+        1. Administrador solicita visualizar empleados
+        2. Sistema procesa la solicitud
+        3. Sistema muestra todos los empleados registrados
 
-Actor: ADMINISTRADOR
+        Flujo alternativo: Sistema avisa al usuario que ningun empleado esta registrado.
 
-Precondiciones: NINGUNA
+### #7 **BUSCAR EMPLEADOS**
 
-FLUJO PRINCIPAL:
+Actor: Administrador / Precondiciones: Ninguna / Post Condicion: VIENDO LISTADO EMPLEADOS
 
-1. Administrador solicita visualizar empleados
-2. Sistema procesa la solicitud
-3. Sistema muestra todos los empleados registrados
+        Flujo principal:
 
-FLUJO ALTERNATIVO: Sistema avisa al usuario que ningun empleado esta registrado.
+        1. Administrador pone un criterio de filtro
+        2. Sistema filtra los usuarios
+        3. Sistema muestra lista de usuarios filtrados
 
-        Post Condicion: VER LISTADO DE EMPLEADOS
+        Flujo alternativo: Sistema avisa al usuario que no hay empleados con ese criterio.
 
-### #6
-Nombre: **BUSCAR EMPLEADOS**
+### #8 **SELECCIONAR EMPLEADO**
 
-Actor: ADMINISTRADOR
+Actor: Administrador / Precondiciones: VER LISTADO DE EMPLEADOS / Post Condicion: EMPLEADO SELECCIONADO
 
-Precondiciones: NINGUNA
+        Flujo principal:
 
-FLUJO PRINCIPAL:
+        1. Administrador selecciona un empleado
 
-1. Administrador pone un criterio de filtro
-2. Sistema filtra los usuarios
-3. Sistema muestra lista de usuarios filtrados
 
-FLUJO ALTERNATIVO: Sistema avisa al usuario que no hay empleados con ese criterio.
+### #9 **REGISTRAR EMPLEADO**
 
-        Post Condicion: VER LISTADO DE EMPLEADOS
+Actor: Administrador / Precondiciones: Ninguna / Post Condicion: EMPLEADO REGISTRADO
 
-### #7
-Nombre: **SELECCIONAR EMPLEADO**
+        Flujo principal:
 
-Actor: ADMINISTRADOR
+        1. Administrador escribe los datos del nuevo usuario
+        2. Administrador confirma creacion de nuevo usuario
+        3. Sistema procesa la solicitud
+        4. Sistema avisa proceso exitoso
 
-Precondiciones: VER LISTADO DE EMPLEADOS
+        Flujo alternativo: Sistema avisa al usuario que los datos ingresados son invalidos
 
-FLUJO PRINCIPAL:
 
-1. Administrador selecciona un empleado
+### #10 **DESACTIVAR EMPLEADO**
 
-        Post Condicion: EMPLEADO SELECCIONADO
+Actor: Administrador / Precondiciones: EMPLEADO SELECCIONADO. EL EMPLEADO ESTA ACTIVADO / Post Condicion: EL EMPLEADO ESTA DESACTIVADO
 
-### #8
+        Flujo principal:
 
-Nombre : **INICIAR SESION**
+        1. Administrador desactiva empleado
+        2. Administrador guarda cambios
+        3. Sistema procesa la solicitud
+        4. Sistema avisa proceso exitoso.
 
-Actor: USUARIO
+### #11 **ACTIVAR EMPLEADO**
 
-Precondiciones: NO LOGUEADO
+Actor: Administrador / Precondiciones: EMPLEADO SELECCIONADO. EL EMPLEADO ESTA DESACTIVADO / Post Condicion: EL EMPLEADO ESTA ACTIVADO
 
-FLUJO PRINCIPAL: 
+        Flujo principal:
 
-1. Usuario pone sus datos
-2. Sistema verifica si el usuario esta registrado
-3. Sistema permite al usuario ingresar
+        1. Administrador activa empleado
+        2. Administrador guarda cambios
+        3. Sistema procesa la solicitud
+        4. Sistema avisa proceso exitoso
 
-FLUJO ALTERNATIVO 1: Sistema avisa al usuario que no esta registrado en sistema
 
-FLUJO ALTERNATIVO 2: Sistema avisa al usuario que los datos son invalidos
+### #12 **ELIMINAR EMPLEADO**
 
-        Post condicion: USUARIO LOGUEADO
+Actor: Administrador / Precondiciones: EMPLEADO SELECCIONADO / Post Condicion: EMPLEADO ELIMINADO
 
-### #9
+        Flujo principal:
 
-Nombre: **MODIFICAR DATOS LOGUEO**
+        1. Administrador elimina al empleado
+        2. Administrador confima los cambios
+        3. Sistema procesa la solicitud
+        4. Sistema avisa proceso exitoso
 
-Actor: USUARIO
 
-Precondiciones: NINGUNA
+// Casos de uso de gastos (los metodos CRUD)
 
-FLUJO PRINCIPAL: 
 
-1. El usuario accede a un apartado de modificacion de sus propios datos
-2. El usuario modifica sus propios datos
-3. El usuario guarda los cambios
-4. Sistema verifica datos
-5. Sistema avisa que sus datos fueron modificados exitosamente
+### #13 **VER TODOS LOS GASTOS**
 
-FLUJO ALTERNATIVO 1: Sistema avisa al usuario que ya existe un usuario en sistema con esos datos.
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA GASTOS
 
-FLUJO ALTERNATIVO 2: Sistema avisa que los datos son invalidos
+        Flujo principal:
 
-        Post condicion: USUARIO MODIFICADO 
+        1. Empleado solicita ver los gastos
+        2. Sistema procesa solicitud
+        3. Sistema muestra lista de gastos
+
+        Flujo alternativo: Sistema avisa que no hay gastos registrados.
+
+### #14 **BUSCAR GASTOS POR CRITERIO**
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA GASTOS
+
+        Flujo principal:
+
+        1. Empleado envia un criterio de filtracion
+        2. Sistema filtra los gastos por el criterio
+        3. Sistema muestra lista de gastos filtrados
+
+        Flujo alternativo: Sistema avisa que no hay gastos filtrados por ese criterio.
+
+### #15 **SELECCIONAR UN GASTO**
+
+Actor: Empleado / Precondiciones: VIENDO LISTA GASTOS / Post condicion: GASTO SELECCIONADO
+
+        Flujo principal:
+
+        1. Empleado selecciona un gasto dentro de la lista de gastos
+
+### #16 **REGISTRAR UN GASTO**
+
+Actor: Empleado / Precondiciones: NINGUNA / Post condicion: GASTO REGISTRADO
+
+        Flujo principal:
+        1. El empleado completa los datos del gasto
+        2. El empleado confirma el registro del gasto
+        3. El sistema verifica el registro
+        4. El sistema avisa que el proceso fue exitoso
+        
+        Flujo alternativo: El sistema avisa proceso fallido, los datos son  invalidos
+
+
+### #17 **MODIFICAR UN GASTO**
+
+Actor: Empleado / Precondiciones: GASTO SELECCIONADO / Post condicion: GASTO MODIFICADO
+
+        Flujo principal:
+
+        1. El empleado accede a la modificacion del gasto
+        2. El empleado edita los datos del gasto
+        3. El empleado confirma la edicion de los datos
+        4. El sistema verifica los datos
+        5. El sistema avisa que el proceso fue exitoso
+
+        Flujo alternativo: El sistema avisa proceso fallido, los datos son invalidos
+
+### #18 **ELIMINAR UN GASTO**
+
+Actor: Empleado / Precondiciones: GASTO SELECCIONADO / Post condicion: GASTO ELIMINADO
+
+        Flujo principal:
+
+        1. El empleado elimina el gasto seleccionado
+        2. El empleado confirma eliminacion del gasto
+        3. El sistema avisa que el proceso fue exitoso
+
+
+// Casos de uso de producciones (los metodos CRUD)
+
+
+### #19 **VER TODAS LAS PRODUCCIONES**
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA PRODUCCIONES
+
+        Flujo principal:
+
+        1. Empleado solicita ver las producciones
+        2. Sistema procesa solicitud
+        3. Sistema muestra lista de producciones
+
+        Flujo alternativo: Sistema avisa que no hay producciones registradas.
+
+### #20 **BUSCAR UNA PRODUCCION POR CRITERIO**
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA PRODUCCIONES
+
+        Flujo principal:
+
+        1. Empleado envia un criterio de filtracion
+        2. Sistema filtra las producciones por el criterio
+        3. Sistema muestra lista de producciones filtradas
+
+        Flujo alternativo: Sistema avisa que no hay producciones filtradas por ese criterio.
+
+### #21 **SELECCIONAR UNA PRODUCCION**
+
+Actor: Empleado / Precondiciones: VIENDO LISTA PRODUCCIONES / Post condicion: PRODUCCION SELECCIONADA
+
+        Flujo principal:
+
+        1. Empleado selecciona una produccion dentro de la lista de producciones
+
+### #22 **REGISTRAR UNA PRODUCCION**
+
+Actor: Empleado / Precondiciones: NINGUNA / Post condicion: PRODUCCION REGISTRADA
+
+        Flujo principal:
+        1. El empleado completa los datos de la produccion
+        2. El empleado confirma el registro de la produccion
+        3. El sistema verifica el registro
+        4. El sistema avisa que el proceso fue exitoso
+
+        Flujo alternativo: El sistema avisa proceso fallido, los datos son invalidos
+
+### #23 **MODIFICAR UNA PRODUCCION**
+
+Actor: Empleado / Precondiciones: PRODUCCION SELECCIONADA / Post condicion: PRODUCCION MODIFICADA
+
+        Flujo principal:
+
+        1. El empleado accede a la modificacion de la produccion
+        2. El empleado edita los datos de la produccion
+        3. El empleado confirma la edicion de los datos
+        4. El sistema verifica los datos
+        5. El sistema avisa que el proceso fue exitoso
+
+        Flujo alternativo: El sistema avisa proceso fallido, los datos son invalidos
+
+### #24 **ELIMINAR UNA PRODUCCION**
+
+Actor: Empleado / Precondiciones: PRODUCCION SELECCIONADA / Post condicion: PRODUCCION ELIMINADA
+
+        Flujo principal:
+
+        1. El empleado elimina la produccion seleccionada
+        2. El empleado confirma eliminacion de la produccion
+        3. El sistema avisa que el proceso fue exitoso
+
+
+
+// Casos de uso de ventas (los metodos CRUD)
+
+
+### #25 **VER TODAS LAS VENTAS**
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA VENTAS
+
+        Flujo principal:
+
+        1. Empleado solicita ver las ventas
+        2. Sistema procesa solicitud
+        3. Sistema muestra lista de ventas
+
+        Flujo alternativo: Sistema avisa que no hay ventas registradas.
+
+### #26 **BUSCAR VENTAS POR CRITERIO**
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA VENTAS
+
+        Flujo principal:
+
+        1. Empleado envia un criterio de filtracion
+        2. Sistema filtra las ventas por el criterio
+        3. Sistema muestra lista de ventas filtradas
+
+        Flujo alternativo: Sistema avisa que no hay ventas filtradas por ese criterio.
+
+### #27 **SELECCIONAR UNA VENTA**
+
+Actor: Empleado / Precondiciones: VIENDO LISTA VENTAS / Post condicion: VENTA SELECCIONADA
+
+        Flujo principal:
+
+        1. Empleado selecciona una venta dentro de la lista de ventas
+
+### #28 **REGISTRAR UNA VENTA**
+
+Actor: Empleado / Precondiciones: NINGUNA / Post condicion: VENTA REGISTRADA
+
+        Flujo principal:
+        1. El empleado completa los datos de la venta
+        2. El empleado confirma el registro de la venta
+        3. El sistema verifica el registro
+        4. El sistema avisa que el proceso fue exitoso
+
+        Flujo alternativo: El sistema avisa proceso fallido, los datos son invalidos
+
+### #29 **MODIFICAR UNA VENTA**
+
+Actor: Empleado / Precondiciones: VENTA SELECCIONADA / Post condicion: VENTA MODIFICADA
+
+        Flujo principal:
+
+        1. El empleado accede a la modificacion de la venta
+        2. El empleado edita los datos de la venta
+        3. El empleado confirma la edicion de los datos
+        4. El sistema verifica los datos
+        5. El sistema avisa que el proceso fue exitoso
+
+        Flujo alternativo: El sistema avisa proceso fallido, los datos son invalidos
+
+### #30 **ELIMINAR UNA VENTA**
+
+Actor: Empleado / Precondiciones: VENTA SELECCIONADA / Post condicion: VENTA ELIMINADA
+
+        Flujo principal:
+
+        1. El empleado elimina la venta seleccionada
+        2. El empleado confirma eliminacion de la venta
+        3. El sistema avisa que el proceso fue exitoso
+
+### #31 **VER INFORMES**
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA INFORMES
+
+        Flujo principal:
+
+        1. Empleado solicita ver las los informes
+        2. Sistema procesa solicitud
+        3. Sistema muestra lista de informes
+
+        Flujo alternativo: Sistema avisa que no hay ningun informe registrado.
+
+### #32 **BUSCAR INFORMES POR CRITERIO**
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA INFORMES
+
+        Flujo principal:
+
+        1. El empleado envia un criterio de filtracion
+        2. El sistema filtra los informes por el criterio
+        3. El sistema muestra lista de informes filtrados
+
+        Flujo alternativo: Sistema avisa que no hay informes filtradas por ese criterio.
+
+### #33 **SELECCIONAR INFORME**
+
+Actor: Empleado / Precondiciones: VIENDO LISTA INFORMES / Post condicion: INFORME SELECCIONADO
+
+        Flujo principal:
+
+        1. El empleado selecciona un informe dentro de la lista de informes
+
+### #34 **VER INFORME EN PDF**
+
+Actor: Empleado / Precondiciones: INFORME SELECCIONADO / Post condicion: VIENDO INFORME EN PDF
+
+        Flujo principal:
+        
+        1. El empleado solicita ver el informe en PDF
+        2. El sistema muestra el informe en PDF
+
+### #35 **CREAR INFORME**
+
+Actor: Empleado / Precondiciones: NINGUNA / Post condicion: INFORME CREADO
+
+        Flujo principal:
+        1. El empleado completa los datos de creacion de informe
+        2. El empleado confirma la creacion de informe
+        3. El sistema verifica datos de la creacion
+        4. El sistema avisa que el proceso fue exitoso
+
+        Flujo alternativo: El sistema avisa proceso fallido, los datos son invalidos
+
+### #36 **ELIMINAR INFORME**
+
+Actor: Empleado / Precondiciones: INFORME SELECCIONADO / Post condicion: INFORME ELIMINADO
+
+        Flujo principal:
+
+        1. El empleado elimina el informe seleccionado
+        2. El empleado confirma eliminacion del informe
+        3. El sistema avisa que el proceso fue exitoso

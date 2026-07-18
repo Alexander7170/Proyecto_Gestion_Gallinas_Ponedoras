@@ -432,5 +432,51 @@ Actor: Empleado / Precondiciones: INFORME SELECCIONADO / Post condicion: INFORME
         Flujo principal:
 
         1. El empleado elimina el informe seleccionado
+        
         2. El empleado confirma eliminacion del informe
         3. El sistema avisa que el proceso fue exitoso
+
+### #37 **VER INFORMACION DE UN INFORME**
+
+Actor: Empleado / Precondiciones: INFORME SELECCIONADO / Post condicion: VIENDO INFORMACION DE UN INFORME
+
+        Flujo principal:
+
+        1. El empleado solicita ver la informacion del informe
+        2. El Sistema muestra la informaicon del informe
+
+### #38 **VER INFORMACION DE UNA VENTA**
+
+Actor: Empleado / Precondiciones: INFORME SELECCIONADO / Post condicion: VIENDO INFORMACION DE UNA VENTA
+
+        Flujo principal:
+
+        1. El empleado solicita ver la informacion del informe
+        2. El Sistema muestra la informaicon del informe
+
+### #39 **VER INFORMACION DE UN GASTO**
+
+Actor: Empleado / Precondiciones: INFORME SELECCIONADO / Post condicion: VIENDO INFORMACION DE UN INFORME
+
+        Flujo principal:
+
+        1. El empleado solicita ver la informacion del informe
+        2. El Sistema muestra la informaicon del informe
+
+### #40 **VER INFORMACION DE UNA PRODUCCION**
+
+Actor: Empleado / Precondiciones: INFORME SELECCIONADO / Post condicion: VIENDO INFORMACION DE UN INFORME
+
+        Flujo principal:
+
+        1. El empleado solicita ver la informacion del informe
+        2. El Sistema muestra la informaicon del informe
+
+### #41 **VER INFORMACION DE UN EMPLEADO**
+
+Actor: Empleado / Precondiciones: INFORME SELECCIONADO / Post condicion: VIENDO INFORMACION DE UN INFORME
+
+        Flujo principal:
+
+        1. El empleado solicita ver la informacion del informe
+        2. El Sistema muestra la informaicon del informe

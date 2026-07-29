@@ -11,6 +11,7 @@
 * El sistema debe permitir filtrar ventas, gastos, producciones y informes por el ID
 * El sistema debe permitir filtrar ventas, gastos y producciones por una fecha
 * El sistema debe permitir filtrar empleados por id, dni y nombre
+* El sistema debe permitir filtrar informes por su id y su rango de fechas
 * El sistema debe permitir agregar o eliminar usuarios 
 * El sistema debe permitir desactivar e activar el permiso de uso del software de un usuario
 * El sistema debe permitir registrar un sueldo a un empleado

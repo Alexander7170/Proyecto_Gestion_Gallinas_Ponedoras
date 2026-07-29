@@ -100,4 +100,6 @@
 
 * Como dueño quiero filtrar informes por su id para buscar mas facilmente
 
+* Como dueño quiero filtrar informes por un rango de fechas para buscar mas facilmente
+
 * Como dueño quiero listar todos los informes para saber cuantos infomes tengo y cuales son.

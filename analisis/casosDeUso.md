@@ -460,3 +460,14 @@ Actor: Dueño / Precondiciones: Ninguna / Post condicion: VIENDO LISTA INFORMES
         4. Sistema muestra la lista filtrada
 
         Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
+
+#### FILTRAR INFORMES POR SU RANGO DE FECHAS
+
+Actor: Dueño / Precondiciones: Ninguna / Post condicion: VIENDO LISTA INFORMES
+        Flujo principal:
+        1. Dueño envia un rango de fechas
+        2. Sistema verifica el dato enviado
+        3. Sistema filtra por el dato enviado
+        4. Sistema muestra la lista filtrada
+
+        Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.

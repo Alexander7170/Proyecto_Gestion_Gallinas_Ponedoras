@@ -24,6 +24,12 @@
 
 * Como dueño quiero registrar el sueldo de un empleado para que sea contemplado en el informe de gastos.
 
+* Como dueño quiero filtrar los empleados por nombre para facilitar la busqueda de empleados
+
+* Como dueño quiero filtrar los empleados por su dni para facilitar la busqueda de empleados
+
+* Como dueño quiero filtrar los empleados por su id para facilitar la busqueda de empleados
+
 *Relacionadas a los gastos*
 
 * Como empleado quiero seleccionar un gasto para ejercer acciones sobre el

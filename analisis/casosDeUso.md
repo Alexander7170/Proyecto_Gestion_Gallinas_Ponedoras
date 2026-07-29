@@ -133,6 +133,18 @@ Actor: Dueño / Precondiciones: Ninguna / Post Condicion: VIENDO LISTADO USUARIO
 
         Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
 
+#### FILTRAR EMPLEADOS POR NOMBRE
+
+Actor: Dueño / Precondiciones: Ninguna / Post Condicion: VIENDO LISTADO USUARIOS
+
+        Flujo Principal:
+        1. Empleado envia un Nombre
+        2. Sistema verifica el dato enviado
+        3. Sistema filtra por el dato enviado
+        4. Sistema muestra la lista filtrada
+
+        Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido
+
 ##
 ### *Relacionados con gestion gastos*
 
@@ -312,7 +324,7 @@ Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA PRODUCC
 
 
 ##
-### *Casos de uso relacionados con las ventas*
+### *Relacionados con las ventas*
 
 #### SELECCIONAR UNA VENTA
 
@@ -391,7 +403,7 @@ Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA VENTAS
 
         Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
 
-### #4 ASIGNAR PRECIO DEL HUEVO
+#### ASIGNAR PRECIO DEL HUEVO
 
 Actor: Dueño / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO ASIGNADO
 
@@ -405,7 +417,7 @@ Actor: Dueño / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO ASIGN
         Flujo alternativo 1: El sistema avisa proceso fallido, los datos son invalidos
 
 ##
-### *Casos de uso relacionados con los informes*
+### *Relacionados con los informes*
 
 #### SELECCIONAR INFORME
 

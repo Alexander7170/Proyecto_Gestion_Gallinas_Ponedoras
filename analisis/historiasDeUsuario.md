@@ -84,8 +84,6 @@
 
 * Como empleado quiero filtrar ventas por id para poder buscar mas facilmente
 
-* Como dueño quiero registrar el precio del huevo para que sea reflejado en los informes.
-
 *Relacionados a los informes*
 
 * Como dueño quiero crear un informe de ventas para ver todas las ventas registradas en ese periodo
@@ -103,3 +101,16 @@
 * Como dueño quiero filtrar informes por un rango de fechas para buscar mas facilmente
 
 * Como dueño quiero listar todos los informes para saber cuantos infomes tengo y cuales son.
+
+
+*Relacionados a los huevos*
+
+* Como dueño quiero registrar un precio de venta de un huevo para que sea usando en las ventas y en la comparativa de la inflacion del huevo.
+
+* Como dueño quiero consultar el precio mas actual del huevo para usarlo en la creacion de una venta mas facil
+
+* Como dueño quiero consultar todos los precios de ventas de los huevos que fui registrando para hacer una comparativa de la inflacion del huevo
+
+* Como dueño quiero filtrar los precios de venta de huevos por una fecha especifica para verificar cuanto vendia la unidad de huevo en esa epoca
+
+* Como dueño quiero filtrar los precios de venta de huevos por un rango de fechas para hacer una comparativa de la inflacion del huevo en un periodo 

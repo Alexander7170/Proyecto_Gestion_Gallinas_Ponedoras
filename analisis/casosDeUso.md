@@ -36,13 +36,13 @@ Actor: Usuario / Precondiciones: USUARIO LOGUEADO / Post condicion: USUARIO NO L
         1. El usuario solicita cerrar su sesion
         2. El sistema cierra la sesion del usuario
 
-#### MODIFICAR DATOS LOGUEO
+#### MODIFICAR DATOS PERSONALES
 
 Actor: Usuario / Precondiciones: Ninguna / Post condicion: USUARIO MODIFICADO
 
         Flujo principal:
 
-        1. El usuario modifica sus propios datos
+        1. El usuario modifica sus datos personales
         2. El usuario guarda y envia los cambios
         3. Sistema verifica los datos
         4. Sistema avisa que sus datos fueron modificados exitosamente
@@ -53,10 +53,6 @@ Actor: Usuario / Precondiciones: Ninguna / Post condicion: USUARIO MODIFICADO
 
 ##
 ### *Relacionados con gestion empleados*
-
-#### SELECCIONAR USUARIO
-
-Actor: Dueño / Precondiciones: VER LISTADO DE USUARIOS / Post Condicion: USUARIO SELECCIONADO
 
 #### CREAR USUARIO
 
@@ -148,10 +144,6 @@ Actor: Dueño / Precondiciones: Ninguna / Post Condicion: VIENDO LISTADO USUARIO
 ##
 ### *Relacionados con gestion gastos*
 
-#### SELECCIONAR UN GASTO
-
-Actor: Empleado / Precondiciones: VIENDO LISTA GASTOS / Post condicion: GASTO SELECCIONADO
-
 #### CREAR UN GASTO
 
 Actor: Empleado / Precondiciones: NINGUNA / Post condicion: GASTO REGISTRADO
@@ -180,7 +172,7 @@ Actor: Empleado / Precondiciones: GASTO SELECCIONADO / Post condicion: GASTO MOD
 
 Actor: Empleado / Precondiciones: GASTO SELECCIONADO / Post condicion: GASTO ELIMINADO
 
-#### VER TODOS LOS GASTOS
+#### LISTAR GASTOS
 
 Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA GASTOS
 
@@ -244,14 +236,6 @@ Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA PRODUCC
         3. Sistema muestra lista de producciones
 
         Flujo alternativo: Sistema avisa que no hay producciones registradas.
-
-#### SELECCIONAR UNA PRODUCCION
-
-Actor: Empleado / Precondiciones: VIENDO LISTA PRODUCCIONES / Post condicion: PRODUCCION SELECCIONADA
-
-        Flujo principal:
-
-        1. Empleado selecciona una produccion dentro de la lista de producciones
 
 #### CREAR UNA PRODUCCION
 
@@ -326,10 +310,6 @@ Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA PRODUCC
 ##
 ### *Relacionados con las ventas*
 
-#### SELECCIONAR UNA VENTA
-
-Actor: Empleado / Precondiciones: VIENDO LISTA VENTAS / Post condicion: VENTA SELECCIONADA
-
 #### CREAR UNA VENTA
 
 Actor: Empleado / Precondiciones: NINGUNA / Post condicion: VENTA REGISTRADA
@@ -403,33 +383,15 @@ Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA VENTAS
 
         Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
 
-#### ASIGNAR PRECIO DEL HUEVO
-
-Actor: Dueño / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO ASIGNADO
-
-        Flujo principal:
-
-        1. Dueño solicita asignarle precio al huevo
-        2. Dueño guarda los cambios
-        4. El sistema verifica la solicitud
-        5. El sistema avisa que el proceso fue exitoso
-
-        Flujo alternativo 1: El sistema avisa proceso fallido, los datos son invalidos
-
 ##
 ### *Relacionados con los informes*
-
-#### SELECCIONAR INFORME
-
-Actor: Dueño / Precondiciones: VIENDO LISTA INFORMES / Post condicion: INFORME SELECCIONADO
 
 #### CREAR INFORME
 
 Actor: Dueño / Precondiciones: NINGUNA / Post condicion: INFORME CREADO
 
         Flujo principal:
-        1. El dueño completa el formulario de creacion informe
-        2. El dueño envia el formulario
+        1. El dueño envia el formulario del informe, incluido el tipo de informe
         3. El sistema verifica el formulario
         4. El sistema avisa que el proceso fue exitoso
 
@@ -471,3 +433,61 @@ Actor: Dueño / Precondiciones: Ninguna / Post condicion: VIENDO LISTA INFORMES
         4. Sistema muestra la lista filtrada
 
         Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
+
+##
+### *Relacionados con los huevos*
+
+#### REGISTRAR PRECIO DEL HUEVO
+
+Actor: Dueño / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO REGISTRADO
+
+        Flujo principal:
+        1. Dueño envia un nuevo precio del huevo
+        2. Dueño guarda los cambios
+        3. El sistema verifica los datos enviados
+        5. El sistema avisa que el proceso fue exitoso
+
+        Flujo alternativo 1: Los datos son invalidos, sistema avisa lo sucedido
+
+#### ELIMINAR PRECIO DEL HUEVO
+
+Actor: Dueño / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO ELIMINADO
+
+#### OBTENER PRECIO HUEVO MAS RECIENTE
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: PRECIOS DE HUEVOS LISTADO
+
+        1. Empleado solicita obtener el precio del huevo mas reciente
+        2. Sistema busca el mas actual
+        3. Sistema muestra el precio mas actual
+
+        Flujo alternativo: No hay ningun precio de huevo registrado, sistema avisa lo sucedido
+
+#### LISTAR PRECIOS DE HUEVOS
+
+Actor: Empleado / Precondiciones: PRECIOS DE HUEVOS LISTADO / Post condicion: PRECIO HUEVO SELECCIONADO
+
+        1. Empleado solicita ver todos los precios huevos
+        2. Sistema muestra lista todos los precios de huevos
+
+        Flujo alternativo: No hay ningun precio de huevo registrado, sistema avisa lo sucedido
+
+#### FILTRAR PRECIOS HUEVO POR FECHA
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: PRECIOS DE HUEVOS LISTADO 
+        1. Empleado envia una fecha
+        2. Sistema verifica el dato enviado
+        3. Sistema filtra por el dato enviado
+        4. Sistema muestra la lista filtrada
+
+        Flujo alternativo: No hay precios de huevos que coincidan con ese filtro. Sistema avisa lo sucedido.
+
+#### FILTRAR PRECIOS HUEVO POR RANGO DE FECHAS
+
+Actor: Empleado / Precondiciones: Ninguna / Post condicion: PRECIOS DE HUEVOS LISTADO 
+        1. Empleado envia un rango de fechas
+        2. Sistema verifica el dato enviado
+        3. Sistema filtra por el dato enviado
+        4. Sistema muestra la lista filtrada
+
+        Flujo alternativo: No hay precios de huevos que coincidan con ese filtro. Sistema avisa lo sucedido.

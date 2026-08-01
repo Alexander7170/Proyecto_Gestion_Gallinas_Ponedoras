@@ -8,14 +8,16 @@
 * El sistema debe permitir realizar las operaciones CRUD de las producciones
 * El sistema debe permitir visualizar, crear y eliminar informes generales, de ventas, de gastos y de producciones.
 * El sistema debe permitir filtrar gastos, ventas y producciones por un rango de fechas
-* El sistema debe permitir filtrar ventas, gastos, producciones y informes por el ID
 * El sistema debe permitir filtrar ventas, gastos y producciones por una fecha
-* El sistema debe permitir filtrar empleados por id, dni y nombre
-* El sistema debe permitir filtrar informes por su id y su rango de fechas
+* El sistema debe permitir filtrar empleados por dni y nombre
+* El sistema debe permitir filtrar informes por su rango de fechas
+* El sistema debe permitir filtrar huevos por su fecha o rango de fechas
+* El sistema debe permitir obtener el huevo con fecha de registro mas cercana
 * El sistema debe permitir agregar o eliminar usuarios 
 * El sistema debe permitir desactivar e activar el permiso de uso del software de un usuario
 * El sistema debe permitir registrar un sueldo a un empleado
-* El sistema debe permitir registrar el valor del huevo
+* El sistema debe permitir listar, registrar eliminar el valor del huevo
+
 
 
 

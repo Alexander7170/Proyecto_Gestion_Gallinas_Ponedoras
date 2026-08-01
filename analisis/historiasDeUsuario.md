@@ -10,8 +10,6 @@
 
 *Relacionados a los empleados*
 
-* Como dueño quiero seleccionar a un empleado del sistema para ejecutar acciones sobre el.
-
 * Como dueño quiero crear un empleado para que gestione el software.
 
 * Como dueño quiero eliminar un empleado registrado para que ya no use permanentemente el software.
@@ -32,8 +30,6 @@
 
 *Relacionadas a los gastos*
 
-* Como empleado quiero seleccionar un gasto para ejercer acciones sobre el
-
 * Como empleado quiero crear un gasto para que sea contemplado en los informes
 
 * Como empleado quiero modificar un gasto para corregir un dato mal cargado.
@@ -50,8 +46,6 @@
 
 *Relacionadas a la produccion*
 
-* Como empleado quiero seleccionar una produccion para poder ejecutar acciones sobre ellas
-
 * Como empleado quiero crear una producción para que sea contemplado en los informes.
 
 * Como empleado quiero modificar una producción para corregir un dato mal cargado.
@@ -67,8 +61,6 @@
 * Como empleado quiero filtrar producciones por el id para poder buscar mas facilmente
 
 *Relacionadas a las ventas*
-
-* Como empleado quiero seleccionar una venta para ejecutar acciones sobre ella
 
 * Como empleado quiero crear una venta para que sea reflejado en los informes
 
@@ -105,12 +97,14 @@
 
 *Relacionados a los huevos*
 
-* Como dueño quiero registrar un precio de venta de un huevo para que sea usando en las ventas y en la comparativa de la inflacion del huevo.
+* Como dueño quiero registrar el precio de un huevo para que sea usando en las ventas y en la comparativa de la inflacion del huevo.
 
-* Como dueño quiero consultar el precio mas actual del huevo para usarlo en la creacion de una venta mas facil
+* Como dueño quiero eliminar el precio de un huevo para corregir un error de registro de precio
 
-* Como dueño quiero consultar todos los precios de ventas de los huevos que fui registrando para hacer una comparativa de la inflacion del huevo
+* Como empleado quiero consultar el precio de un huevo mas actualizado para usarlo en la creacion de una venta 
 
-* Como dueño quiero filtrar los precios de venta de huevos por una fecha especifica para verificar cuanto vendia la unidad de huevo en esa epoca
+* Como empleado quiero consultar todos los precios de los huevos para hacer una comparativa de la inflacion del huevo
 
-* Como dueño quiero filtrar los precios de venta de huevos por un rango de fechas para hacer una comparativa de la inflacion del huevo en un periodo 
+* Como empleado quiero filtrar los precios de huevos por una fecha especifica para verificar cuanto vendia la unidad de huevo en esa epoca
+
+* Como empleado quiero filtrar los precios de huevos por un rango de fechas para hacer una comparativa de la inflacion del huevo en un periodo 

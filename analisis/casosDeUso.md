@@ -105,18 +105,6 @@ Actor: Dueño / Precondiciones: Ninguna / Post Condicion: VIENDO LISTADO USUARIO
 
         Flujo alternativo: Ningun usuario esta registrado. Sistema avisa lo sucedido
 
-#### FILTRAR EMPLEADOS POR ID
-
-Actor: Dueño / Precondiciones: Ninguna / Post Condicion: VIENDO LISTADO USUARIOS
-
-        Flujo principal:
-        1. Empleado envia un ID
-        2. Sistema verifica el dato enviado
-        3. Sistema filtra por el dato enviado
-        4. Sistema muestra la lista filtrada
-
-        Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
-
 #### FILTRAR EMPLEADOS POR DNI
 
 Actor: Dueño / Precondiciones: Ninguna / Post Condicion: VIENDO LISTADO USUARIOS
@@ -183,19 +171,6 @@ Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA GASTOS
         3. Sistema muestra lista de gastos
 
         Flujo alternativo: Sistema avisa que no hay gastos registrados.
-
-
-#### FILTRAR GASTOS POR ID
-
-Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO UN GASTO
-
-        Flujo principal:
-        1. Empleado envia un ID
-        2. Sistema verifica el dato enviado
-        3. Sistema filtra por el dato enviado
-        4. Sistema muestra la lista filtrada
-
-        Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
 
 #### FILTRAR GASTOS POR FECHA
 
@@ -282,18 +257,6 @@ Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA PRODUCC
 
         Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
 
-#### FILTRAR PRODUCCIONES POR ID
-
-Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA PRODUCCIONES
-
-        Flujo principal:
-        1. Empleado envia un ID
-        2. Sistema verifica el dato enviado
-        3. Sistema filtra por el dato enviado
-        4. Sistema muestra la lista filtrada
-
-        Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
-
 #### FILTRAR PRODUCCIONES POR FECHA
 
 Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA PRODUCCIONES
@@ -348,17 +311,6 @@ Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA VENTAS
 
         Flujo alternativo: Sistema avisa que no hay ventas registradas.
 
-#### FILTRAR VENTAS POR ID
-
-Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA VENTAS
-
-        Flujo principal:
-        1. Empleado envia un ID
-        2. Sistema verifica el dato enviado
-        3. Sistema filtra por el dato enviado
-        4. Sistema muestra la lista filtrada
-
-        Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
 #### FILTRAR VENTAS POR FECHA
 
 Actor: Empleado / Precondiciones: Ninguna / Post condicion: VIENDO LISTA VENTAS
@@ -411,18 +363,6 @@ Actor: Dueño / Precondiciones: Ninguna / Post condicion: VIENDO LISTA INFORMES
 
         Flujo alternativo: Sistema avisa que no hay ningun informe registrado.
 
-#### FILTRAR INFORMES POR ID
-
-Actor: Dueño / Precondiciones: Ninguna / Post condicion: VIENDO LISTA INFORMES
-
-        Flujo principal:
-        1. Dueño envia un ID
-        2. Sistema verifica el dato enviado
-        3. Sistema filtra por el dato enviado
-        4. Sistema muestra la lista filtrada
-
-        Flujo alternativo: No hay ventas que coincidan con ese filtro. Sistema avisa lo sucedido.
-
 #### FILTRAR INFORMES POR SU RANGO DE FECHAS
 
 Actor: Dueño / Precondiciones: Ninguna / Post condicion: VIENDO LISTA INFORMES
@@ -451,7 +391,26 @@ Actor: Dueño / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO REGIS
 
 #### ELIMINAR PRECIO DEL HUEVO
 
-Actor: Dueño / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO ELIMINADO
+Actor: Dueño / Precondiciones: HUEVO SELECCIONADO / Post condicion: PRECIO DEL HUEVO ELIMINADO
+
+        Flujo principal:
+        1. Dueño envia un Precio Huevo a eliminar
+        2. Sistema Elimina correctamente el huevo
+
+        Flujo alternativo 1: Existen ventas vinculadas a esa entidad. Sistema avisa que no se puede eliminar el precio huevo.
+
+#### MODIFICAR PRECIO DEL HUEVO
+
+Actor: Dueño / Precondiciones: Ninguna / Post condicion: PRECIO DEL HUEVO MODIFICADO
+
+        Flujo principal:
+        1. El dueño edita los datos del Huevo
+        2. El dueño confirma la edicion de los datos
+        3. El sistema verifica los datos
+        4. El sistema avisa que el proceso fue exitoso
+
+        Flujo alternativo 1: Los datos son invalidos. El sistema avisa lo sucedido.
+        Flujo alternativo 2: Se encontraron ventas vinculadas al precio huevo. El sistema avisa que se modificaron esas ventas
 
 #### OBTENER PRECIO HUEVO MAS RECIENTE
 

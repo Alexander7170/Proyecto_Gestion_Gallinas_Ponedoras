@@ -99,7 +99,9 @@
 
 * Como dueño quiero registrar el precio de un huevo para que sea usando en las ventas y en la comparativa de la inflacion del huevo.
 
-* Como dueño quiero eliminar el precio de un huevo para corregir un error de registro de precio
+* Como dueño quiero modificar el precio de un huevo para corregir un dato mal cargado.
+
+* Como dueño quiero eliminar el precio de un huevo para corregir un error de registro
 
 * Como empleado quiero consultar el precio de un huevo mas actualizado para usarlo en la creacion de una venta 
 
@@ -108,3 +110,4 @@
 * Como empleado quiero filtrar los precios de huevos por una fecha especifica para verificar cuanto vendia la unidad de huevo en esa epoca
 
 * Como empleado quiero filtrar los precios de huevos por un rango de fechas para hacer una comparativa de la inflacion del huevo en un periodo 
+

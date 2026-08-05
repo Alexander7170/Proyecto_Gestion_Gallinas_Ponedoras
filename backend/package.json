@@ -1,0 +1,28 @@
+{
+  "name": "gestion_gallinas",
+  "version": "1.0.0",
+  "description": "Es un Software de gestion empresarial sobre los requerimientos de la empresa \"Gallinas Felices\" pero que basicamente permite gestionar entidades como las ventas, gastos y producciones de la empresa. Para que luego estos movimientos de la empresa sean mostrados detalladamente en un informe",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexander7170/Proyecto_Gestion_Gallinas_Ponedoras.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Alexander7170/Proyecto_Gestion_Gallinas_Ponedoras/issues"
+  },
+  "homepage": "https://github.com/Alexander7170/Proyecto_Gestion_Gallinas_Ponedoras#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.23.2",
+    "nodemon": "^3.1.14"
+  }
+}

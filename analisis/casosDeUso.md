@@ -222,7 +222,8 @@ Actor: Empleado / Precondiciones: NINGUNA / Post condicion: PRODUCCION REGISTRAD
         3. El sistema verifica el formulario
         4. El sistema avisa que el proceso fue exitoso
 
-        Flujo alternativo: El sistema avisa proceso fallido, los datos son invalidos
+        Flujo alternativo 1: El sistema avisa proceso fallido, los datos son invalidos
+        Flujo alternativo 2: La produccion no puede ser posterior a fecha actual. No se crea formulario y el sistema avisa lo sucedido
 
 #### MODIFICAR UNA PRODUCCION
 

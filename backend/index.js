@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import enviorments from "./src/api/config/enviorments.js";
+import enviorments from "./src/api/config/environment.js";
 import usuarioRouter from "./src/api/routers/usuarioRouter.js";
 const app = express();
 app.use(express.json());

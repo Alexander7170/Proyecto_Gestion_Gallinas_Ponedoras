@@ -41,11 +41,25 @@ export const verUsuarios = async(req,res)=>{
         }
         res.status(200).json({payload: usuarios});
     } catch (error) {
-        mostrarResultadoError(error);
+        console.error(error);
+        res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});
+    }
+}
+
+export const eliminarUsuario = async(req,res) =>{
+    try {
+        const [resultado] = await usuarioModelo.deleteUsuario(req.body.id);
+        if(resultado.affectedRows == 0){
+            res.status(400).json({mensaje: "No se encontro un usuario con ese id"});
+        }
+        res.status(200).json({mensaje: "Usuario fue eliminado exitosamente"});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});
     }
 }
 
 function mostrarResultadoError(error){
-    console.error(error);
-    res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});
+    
+    
 }

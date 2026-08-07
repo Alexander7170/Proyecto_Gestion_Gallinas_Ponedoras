@@ -13,4 +13,9 @@ const selectEmpleados = ()=>{
     const sql = "SELECT * FROM empleados";
     return conexion.query(sql);
 };
-export default {insertUsuario, insertEmpleado}
+const selectUsuarios = ()=>{
+    const sql = "SELECT * FROM usuarios";
+    return conexion.query(sql);
+}
+export default 
+{insertUsuario, insertEmpleado, selectEmpleados, selectUsuarios}

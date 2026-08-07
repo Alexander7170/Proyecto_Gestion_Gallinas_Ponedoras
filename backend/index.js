@@ -5,7 +5,7 @@ import usuarioRouter from "./src/api/routers/usuarioRouter.js";
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use("/empleados", usuarioRouter);
+app.use("/api/usuarios", usuarioRouter);
 app.listen(enviorments.puerto, ()=>{
     console.log(`Sistema levantado en puerto ${enviorments.puerto}`);
 })

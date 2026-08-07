@@ -21,7 +21,7 @@ export const crearEmpleado = async(req,res)=>{
     }
 }
 
-export const verEmpleados = async(req,res)=>{
+export const obtenerEmpleados = async(req,res)=>{
     try {
         const [empleados] = await usuarioModelo.selectEmpleados();
         if(empleados.length == 0){
@@ -33,21 +33,36 @@ export const verEmpleados = async(req,res)=>{
     }
 }
 
-export const verUsuarios = async(req,res)=>{
+export const obtenerUsuarios = async(req,res)=>{
     try {
         const [usuarios] = await usuarioModelo.selectUsuarios();
         if(usuarios.length == 0){
             req.status(204);
         }
-        res.status(200).json({payload: usuarios});
+        return res.status(200).json({payload: usuarios});
     } catch (error) {
         console.error(error);
         res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});
     }
 }
 
+export const obtenerEmpleadosPorDNI = async(req,res) =>{
+    try {
+        const [empleadosFiltrados, metadata] = await usuarioModelo.selectUsuariosPorDNI(req.body.dni);
+        if(empleadosFiltrados.length == 0){
+            return res.status(204);
+        }
+        res.status(200).json({payload: empleadosFiltrados});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje: "Ocurrio un error interno inesperado"});
+    }
+}
+
+
 export const eliminarUsuario = async(req,res) =>{
     try {
+        const [metadataDeleteEmp] = await usuarioModelo.deleteEmpleado(req.body.id);
         const [resultado] = await usuarioModelo.deleteUsuario(req.body.id);
         if(resultado.affectedRows == 0){
             res.status(400).json({mensaje: "No se encontro un usuario con ese id"});
@@ -62,7 +77,6 @@ export const eliminarUsuario = async(req,res) =>{
 export const eliminarEmpleado = async(req,res)=>{
     try {
         const [metadataDeleteEmp] = await usuarioModelo.deleteEmpleado(req.body.id);
-        const [metadataDeleteUser] = await usuarioModelo.deleteUsuario(req.body.id);
         res.status(200).json({mensjae: "Eliminacion de empleado existosa"});
     } catch (error) {
         console.error(error);

@@ -31,6 +31,12 @@ const insertEmpleado = (idUsuario, sueldo)=>{
     const sql = "INSERT INTO empleados(id_usuario, sueldo) VALUES (?,?)"
     return conexion.query(sql,[idUsuario,sueldo]);
 };
+
+const selectUsuariosPorDNI = (dni)=>{
+    const sql = `SELECT * FROM ${USUARIOS} WHERE ${COLUMNA.DNI} = ?`;
+    return conexion.query(sql, [dni]);
+}
+
 const selectEmpleados = ()=>{
     const sql = "SELECT * FROM empleados";
     return conexion.query(sql);
@@ -63,4 +69,4 @@ const updateDNI = (id, dni) =>{
     return conexion.query(sql, [dni,id]);
 } 
 export default 
-{updateDNI,insertUsuario, insertEmpleado, selectEmpleados, selectUsuarios, deleteUsuario, updateDatosPersonales};
+{selectUsuariosPorDNI,deleteEmpleado, updateDNI,insertUsuario, insertEmpleado, selectEmpleados, selectUsuarios, deleteUsuario, updateDatosPersonales};

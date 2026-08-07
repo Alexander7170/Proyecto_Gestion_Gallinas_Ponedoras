@@ -59,7 +59,24 @@ export const eliminarUsuario = async(req,res) =>{
     }
 }
 
-function mostrarResultadoError(error){
-    
-    
+export const actualizarDatosPersonales = async(req,res)=>{
+    try {
+        const {id, nombre, apellido, mail, contrasenia} = req.body
+        const [metadata] = await usuarioModelo.updateDatosPersonales(id,nombre,apellido,mail,contrasenia);
+        return res.status(200).json({mensaje:"Datos fueron modificados correctamente"});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});
+    }
+}
+
+export const actualizarDNI = async(req,res)=>{
+    try {
+        const {id,dni} = req.body;
+        const [metadata] = await usuarioModelo.updateDNI(id, dni);
+        return res.status(200).json({mensaje: "DNI actualizado correctamente"});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje: "Ocurrio un error al actualizar DNI, vuelva a intentarlo mas tarde"});
+    }
 }

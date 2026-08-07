@@ -59,6 +59,19 @@ export const eliminarUsuario = async(req,res) =>{
     }
 }
 
+export const eliminarEmpleado = async(req,res)=>{
+    try {
+        const [metadataDeleteEmp] = await usuarioModelo.deleteEmpleado(req.body.id);
+        const [metadataDeleteUser] = await usuarioModelo.deleteUsuario(req.body.id);
+        res.status(200).json({mensjae: "Eliminacion de empleado existosa"});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});    
+    }
+    
+    
+}
+
 export const actualizarDatosPersonales = async(req,res)=>{
     try {
         const {id, nombre, apellido, mail, contrasenia} = req.body

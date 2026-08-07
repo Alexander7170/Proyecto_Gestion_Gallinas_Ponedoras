@@ -45,6 +45,11 @@ const deleteUsuario = (id)=>{
     return conexion.query(sql, [id]);
 }
 
+const deleteEmpleado = (id)=>{
+    const sql = `DELETE FROM ${EMPLEADOS} WHERE ${COLUMNA_EMP.ID} = ? `;
+    return conexion.query(sql,[id]);
+}
+
 const updateDatosPersonales = (id, nombre, apellido, mail, contrasenia) => {
     const sql =
     `UPDATE ${USUARIOS} 

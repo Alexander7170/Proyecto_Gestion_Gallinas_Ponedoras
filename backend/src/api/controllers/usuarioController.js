@@ -25,7 +25,7 @@ export const obtenerEmpleados = async(req,res)=>{
     try {
         const [empleados] = await usuarioModelo.selectEmpleados();
         if(empleados.length == 0){
-            req.status(204)
+            return res.status(204)
         }
         res.status(200).json({payload: empleados});
     } catch (error) {
@@ -37,9 +37,9 @@ export const obtenerUsuarios = async(req,res)=>{
     try {
         const [usuarios] = await usuarioModelo.selectUsuarios();
         if(usuarios.length == 0){
-            req.status(204);
+            return res.status(204);
         }
-        return res.status(200).json({payload: usuarios});
+        res.status(200).json({payload: usuarios});
     } catch (error) {
         console.error(error);
         res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});
@@ -65,7 +65,7 @@ export const eliminarUsuario = async(req,res) =>{
         const [metadataDeleteEmp] = await usuarioModelo.deleteEmpleado(req.body.id);
         const [resultado] = await usuarioModelo.deleteUsuario(req.body.id);
         if(resultado.affectedRows == 0){
-            res.status(400).json({mensaje: "No se encontro un usuario con ese id"});
+            return res.status(400).json({mensaje: "No se encontro un usuario con ese id"});
         }
         res.status(200).json({mensaje: "Usuario fue eliminado exitosamente"});
     } catch (error) {
@@ -90,7 +90,7 @@ export const actualizarDatosPersonales = async(req,res)=>{
     try {
         const {id, nombre, apellido, mail, contrasenia} = req.body
         const [metadata] = await usuarioModelo.updateDatosPersonales(id,nombre,apellido,mail,contrasenia);
-        return res.status(200).json({mensaje:"Datos fueron modificados correctamente"});
+        res.status(200).json({mensaje:"Datos fueron modificados correctamente"});
     } catch (error) {
         console.error(error);
         res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});

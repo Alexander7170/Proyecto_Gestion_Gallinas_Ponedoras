@@ -37,6 +37,11 @@ const selectUsuariosPorDNI = (dni)=>{
     return conexion.query(sql, [dni]);
 }
 
+const selectUsuariosPorNombre = (nombre) =>{
+    const sql = `SELECT * FROM ${USUARIOS} WHERE ${COLUMNA.NOMBRE} = ?`;
+    return conexion.query(sql,[nombre]);
+}
+
 const selectEmpleados = ()=>{
     const sql = "SELECT * FROM empleados";
     return conexion.query(sql);
@@ -69,4 +74,4 @@ const updateDNI = (id, dni) =>{
     return conexion.query(sql, [dni,id]);
 } 
 export default 
-{selectUsuariosPorDNI,deleteEmpleado, updateDNI,insertUsuario, insertEmpleado, selectEmpleados, selectUsuarios, deleteUsuario, updateDatosPersonales};
+{selectUsuariosPorNombre, selectUsuariosPorDNI,deleteEmpleado, updateDNI,insertUsuario, insertEmpleado, selectEmpleados, selectUsuarios, deleteUsuario, updateDatosPersonales};

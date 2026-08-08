@@ -59,6 +59,19 @@ export const obtenerEmpleadosPorDNI = async(req,res) =>{
     }
 }
 
+export const obtenerUsuarioPorNombre = async(req,res) =>{
+    try {
+        const [empleadosFiltrados, metadata] = await usuarioModelo.selectUsuariosPorNombre(req.body.nombre);
+        if(empleadosFiltrados.length === 0){
+            return res.status(200).json({mensaje:"No se encontro un nombre asi"});
+        }
+        res.status(200).json({payload: empleadosFiltrados});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({mensaje: "Ocurrio un error interno"});
+    }
+}
+
 
 export const eliminarUsuario = async(req,res) =>{
     try {

@@ -1,5 +1,8 @@
+import { json } from "express";
 import usuarioModelo from "../models/usuarioModel.js";
-
+import usuarioServicio from "../services/usuarioService.js";
+import errores from "../errores/index.js";
+import usuarioModel from "../models/usuarioModel.js";
 export const crearEmpleado = async(req,res)=>{
     try {
         const {nombre,apellido, dni, mail, contrasenia, activo, sueldo} = req.body;
@@ -46,16 +49,13 @@ export const obtenerUsuarios = async(req,res)=>{
     }
 }
 
-export const obtenerEmpleadosPorDNI = async(req,res) =>{
+export const obtenerUsuarioPorDNI = async(req,res) =>{
     try {
-        const [empleadosFiltrados, metadata] = await usuarioModelo.selectUsuariosPorDNI(req.body.dni);
-        if(empleadosFiltrados.length == 0){
-            return res.status(204);
-        }
-        res.status(200).json({payload: empleadosFiltrados});
+        console.log(req.body.dni);
+        const [usuario, metadata] = await usuarioServicio.obtenerUsuarioPorDNI(req.body.dni);
+        res.status(200).json({payload: usuario[0]});
     } catch (error) {
-        console.error(error);
-        res.status(500).json({mensaje: "Ocurrio un error interno inesperado"});
+        analizarError(error,res);    
     }
 }
 
@@ -75,7 +75,6 @@ export const obtenerUsuarioPorNombre = async(req,res) =>{
 
 export const eliminarUsuario = async(req,res) =>{
     try {
-        const [metadataDeleteEmp] = await usuarioModelo.deleteEmpleado(req.body.id);
         const [resultado] = await usuarioModelo.deleteUsuario(req.body.id);
         if(resultado.affectedRows == 0){
             return res.status(400).json({mensaje: "No se encontro un usuario con ese id"});
@@ -101,22 +100,45 @@ export const eliminarEmpleado = async(req,res)=>{
 
 export const actualizarDatosPersonales = async(req,res)=>{
     try {
+
         const {id, nombre, apellido, mail, contrasenia} = req.body
-        const [metadata] = await usuarioModelo.updateDatosPersonales(id,nombre,apellido,mail,contrasenia);
+        const [metadata] = await usuarioServicio.actualizarDatosPersonales(id, nombre, apellido, mail, contrasenia)
+
+        if(metadata.affectedRows === 0){
+            //Si en el caso de que haya mas de un dueño, hay probabilidades de que ambos hayan intentado modificar el mismo usuario
+            // y que hayan cambiado las mismas columnas a los mismos datos, lo que hace que un dueño ejecute correctamente pero el otro, porque otro ya lo hizo.
+            // Por ahora solo hay un dueño en este sistema.
+            return res.status(200).json({mensaje: "No se modificado nada"}); 
+        }
         res.status(200).json({mensaje:"Datos fueron modificados correctamente"});
+    
     } catch (error) {
-        console.error(error);
-        res.status(500).json({mensaje: "Ocurrio un error critico del sistema"});
+        analizarError(error,res);
     }
 }
 
 export const actualizarDNI = async(req,res)=>{
     try {
         const {id,dni} = req.body;
-        const [metadata] = await usuarioModelo.updateDNI(id, dni);
-        return res.status(200).json({mensaje: "DNI actualizado correctamente"});
+        const [metadata] = await usuarioServicio.actualizarDNI(id,dni);
+        if(metadata.affectedRows === 0){
+            return res.status(200).json({mensaje: "DNI no se modifico"})
+        }
+        res.status(200).json({mensaje: "DNI actualizado correctamente"});
     } catch (error) {
+        analizarError(error, res);
+    }
+}
+
+function analizarError(error, res){
+    if(error instanceof errores.yaExisteEnSistemaError){
+        return res.status(error.codigoEstado).json({mensaje: error.message, payload: error.entidad});
+    }
+    else if(error instanceof errores.errorLogica){
+        return res.status(error.codigoEstado).json({mensaje:error.message});
+    }
+    else{
         console.error(error);
-        res.status(500).json({mensaje: "Ocurrio un error al actualizar DNI, vuelva a intentarlo mas tarde"});
+        res.status(500).json({mensaje:"Ocurrio un error interno del sistema"});
     }
 }

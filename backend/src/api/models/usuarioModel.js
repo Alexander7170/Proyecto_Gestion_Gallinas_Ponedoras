@@ -23,57 +23,66 @@ const USUARIOS = "usuarios";
 /* La constante EMPLEADOS representa el NOMBRE de la tabla empleados de la base de datos*/
 const EMPLEADOS = "empleados";
 
-const insertUsuario = (nombre, apellido, mail, contrasenia, dni, activo )=>{
-    const sql = "INSERT INTO usuarios(nombre,apellido,mail,dni,activo,contrasenia) VALUES(?,?,?,?,?,?)"
-    return conexion.query(sql,[nombre,apellido, mail,dni,activo,contrasenia]);
+export const insertUsuario = (nombre, apellido, mail, contrasenia, dni, activo )=>{
+    const sql = `INSERT INTO ${USUARIOS}(${COL.NOMBRE}, ${COL.APELLIDO},${COL.DNI}, ${COL.ACTIVO}, ${COL.MAIL}, ${COL.CONTRASENIA}) VALUES (?,?,?,?,?,?)`
+    return conexion.query(sql,[nombre,apellido,dni,activo,mail,contrasenia]);
 };
-const insertEmpleado = (idUsuario, sueldo)=>{
-    const sql = "INSERT INTO empleados(id_usuario, sueldo) VALUES (?,?)"
+export const insertEmpleado = (idUsuario, sueldo)=>{
+    const sql = `INSERT INTO ${EMPLEADOS} (${COL_EMP.ID}, ${COL_EMP.SUELDO}) VALUES (?,?)`
     return conexion.query(sql,[idUsuario,sueldo]);
 };
 
-const selectUsuariosPorNombre = (nombre) =>{
+export const selectUsuariosPorNombre = (nombre) =>{
     const sql = `SELECT * FROM ${USUARIOS} WHERE ${COL.NOMBRE} = ?`;
     return conexion.query(sql,[nombre]);
 }
 
-const selectEmpleados = ()=>{
+export const selectEmpleados = ()=>{
     const sql = "SELECT * FROM empleados";
     return conexion.query(sql);
 };
 
-const selectEmpleadoPorID = (id)=>{
+export const selectEmpleadoPorID = (id)=>{
     const sql = `SELECT ${COL.DNI}, ${COL.NOMBRE}, ${COL.APELLIDO} FROM ${USUARIOS} WHERE ${COL.ID} = ?`
     return conexion.query(sql, [id]);
 }
 
-const selectUsuarios = ()=>{
+export const verificarExisteEmpleado = (id)=>{
+    const sql = 
+    `SELECT ${USUARIOS}.${COL.DNI}, ${USUARIOS}.${COL.NOMBRE}, ${USUARIOS}.${COL.APELLIDO}
+    from ${USUARIOS}
+    INNER JOIN ${EMPLEADOS} ON ${USUARIOS}.${COL.ID} = ${EMPLEADOS}.${COL_EMP.ID}
+    WHERE ${COL_EMP.ID} =  ?`;
+    return conexion.query(sql, [id]);
+}
+
+export const selectUsuarios = ()=>{
     const sql = "SELECT * FROM usuarios";
     return conexion.query(sql);
 }
 
-const selectUsuarioPorMail = (mail) =>{
+export const selectUsuarioPorMail = (mail) =>{
     const sql = `SELECT * FROM ${USUARIOS} WHERE ${COL.MAIL} = ?`
     return conexion.query(sql, [mail]);
 }
 
-const selectUsuariosPorDNI = (dni)=>{
+export const selectUsuariosPorDNI = (dni)=>{
     const sql = `SELECT * FROM ${USUARIOS} WHERE ${COL.DNI} = ?`;
     return conexion.query(sql, [dni]);
 }
 
 
-const deleteUsuario = (id)=>{
+export const deleteUsuario = (id)=>{
     const sql = `DELETE FROM ${USUARIOS} WHERE ${COL.ID} = ?`;
     return conexion.query(sql, [id]);
 }
 
-const deleteEmpleado = (id)=>{
+export const deleteEmpleado = (id)=>{
     const sql = `DELETE FROM ${EMPLEADOS} WHERE ${COL_EMP.ID} = ? `;
     return conexion.query(sql,[id]);
 }
 
-const updateDatosPersonales = (id, nombre, apellido, mail, contrasenia) => {
+export const updateDatosPersonales = (id, nombre, apellido, mail, contrasenia) => {
     const sql =
     `UPDATE ${USUARIOS} 
         SET ${COL.NOMBRE} = ?,${COL.APELLIDO} = ?,
@@ -81,22 +90,19 @@ const updateDatosPersonales = (id, nombre, apellido, mail, contrasenia) => {
         WHERE ${COL.ID} = ?`;
     return conexion.query(sql,[nombre,apellido,mail,contrasenia,id]);
 }
-const updateDNI = (id, dni) =>{
+export const updateDNI = (id, dni) =>{
     const sql = `UPDATE ${USUARIOS} SET ${COL.DNI} = ? WHERE ${COL.ID} = ?`
     return conexion.query(sql, [dni,id]);
 } 
 
 /* LLamadas a base de datos de verificaciones */
 
-const estaMailOcupado = (mail, id) =>{
+export const estaMailOcupado = (mail, id) =>{
     const sql = `SELECT ${COL.ID},${COL.NOMBRE}, ${COL.APELLIDO}, ${COL.MAIL} FROM ${USUARIOS} WHERE ${COL.MAIL} = ? AND ${COL.ID} != ?`
     return conexion.query(sql, [mail,id]);
 }
 
-const estaDNIOcupado = (id,dni)=>{
+export const estaDNIOcupado = (id,dni)=>{
     const sql = `SELECT ${COL.ID},${COL.NOMBRE}, ${COL.APELLIDO}, ${COL.DNI} FROM ${USUARIOS} WHERE ${COL.DNI} = ? AND ${COL.ID} != ?`
     return conexion.query(sql, [dni,id]);
 }
-
-export default 
-{estaDNIOcupado,estaMailOcupado,selectUsuarioPorMail, selectEmpleadoPorID,selectUsuariosPorNombre, selectUsuariosPorDNI,deleteEmpleado, updateDNI,insertUsuario, insertEmpleado, selectEmpleados, selectUsuarios, deleteUsuario, updateDatosPersonales};

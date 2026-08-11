@@ -1,14 +1,16 @@
 import {Router} from "express";
-import {obtenerUsuarioPorNombre,obtenerUsuarioPorDNI, actualizarDNI, crearEmpleado, obtenerEmpleados, obtenerUsuarios, eliminarUsuario, actualizarDatosPersonales} from "../controllers/usuarioController.js";
+import {eliminarEmpleado,obtenerUsuariosPorNombre,obtenerUsuarioPorDNI, actualizarDNI, crearEmpleado, obtenerEmpleados, obtenerUsuarios, eliminarUsuario, actualizarDatosPersonales} from "../controllers/usuarioController.js";
 
 const router = Router()
 
-router.post("/", crearEmpleado);
 router.get("/",obtenerUsuarios);
 router.get("/empleados", obtenerEmpleados);
-router.delete("/", eliminarUsuario);
+router.get("/dni", obtenerUsuarioPorDNI);
+router.get("/nombre", obtenerUsuariosPorNombre);
+router.post("/", crearEmpleado);
 router.put("/datosPersonales", actualizarDatosPersonales);
 router.put("/dni", actualizarDNI);
-router.get("/dni", obtenerUsuarioPorDNI);
-router.get("/nombre", obtenerUsuarioPorNombre);
+router.delete("/", eliminarUsuario);
+router.delete("/empleado",eliminarEmpleado);
+
 export default router;

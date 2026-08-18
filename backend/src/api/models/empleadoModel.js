@@ -8,7 +8,7 @@ const COL =
     CONTRASENIA: "contrasenia",
     MAIL:"mail",
     DNI: "dni",
-    ACTIVO: "ACTIVO"
+    ACTIVO: "activo"
     }
 
 /* La constante COLUMNA_EMP representa las columnas de la tabla EMPLEADOS */
@@ -42,7 +42,7 @@ export const selectUsuariosPorNombre = (nombre) =>{
 }
 
 export const selectEmpleados = ()=>{
-    const sql = `SELECT u.${COL.NOMBRE}, u.${COL.APELLIDO}, u.${COL.DNI}, u.${COL.MAIL},u.${COL.ACTIVO}, e.${COL_EMP.SUELDO} 
+    const sql = `SELECT u.${COL.ID}, u.${COL.NOMBRE}, u.${COL.APELLIDO}, u.${COL.DNI}, u.${COL.MAIL},u.${COL.ACTIVO}, e.${COL_EMP.SUELDO} 
                 FROM ${USUARIOS} u
                 INNER JOIN ${EMPLEADOS} e ON e.${COL_EMP.ID} = u.${COL.ID};`
     return conexion.query(sql);
@@ -59,11 +59,6 @@ export const verificarExisteEmpleado = (id)=>{
     INNER JOIN ${EMPLEADOS} ON ${USUARIOS}.${COL.ID} = ${EMPLEADOS}.${COL_EMP.ID}
     WHERE ${COL_EMP.ID} =  ?`;
     return conexion.query(sql, [id]);
-}
-
-export const selectUsuarios = ()=>{
-    const sql = "SELECT * FROM usuarios";
-    return conexion.query(sql);
 }
 
 export const selectUsuarioPorMail = (mail) =>{
@@ -109,4 +104,9 @@ export const updateDNI = (id, dni) =>{
 export const updateSueldo = (id,sueldo) =>{
     const sql = `UPDATE ${EMPLEADOS} SET ${COL_EMP.SUELDO} = ? WHERE ${COL_EMP.ID} = ?`;
     return conexion.query(sql,[sueldo,id]);
+}
+
+export const updateActividad = (id,actividad) =>{
+    const sql = `UPDATE ${USUARIOS} SET ${COL.ACTIVO} = ? WHERE ${COL.ID} = ?`;
+    return conexion.query(sql,[actividad,id]);
 }

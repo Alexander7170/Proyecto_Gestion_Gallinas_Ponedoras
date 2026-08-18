@@ -8,6 +8,7 @@ import * as excepcion from "../excepciones/excepcion.js";
 
 /* Servicios de POST */
 
+
 // Si existe un ID = 0 entonces se rompe mi sistema
 export const crearEmpleado = async(nombre,apellido,mail,contrasenia,dni,sueldo, activo)=>{
     await verificarMailDuplicado(0, mail);
@@ -27,17 +28,22 @@ export const crearEmpleado = async(nombre,apellido,mail,contrasenia,dni,sueldo, 
     return metadataEmp;
 }
 
+
 /* Servicio de GET, FILTRACIONES */
+
 
 export const obtenerUsuarioPorDNI = async(dni)=>{
     const [usuario, metadata] = await usuarioModelo.selectUsuariosPorDNI(dni); 
     return [usuario, metadata];
 }
 
+
 export const obtenerUsuariosPorNombre = async(nombre)=>{
     const [usuario, metadata] = await usuarioModelo.selectUsuariosPorNombre(nombre);
     return [usuario, metadata];
 }
+
+
 
 /* Servicios de UPDATE */
 
@@ -54,6 +60,7 @@ export const actualizarDatosPersonales = async(id, nombre, apellido, mail, contr
     return metadata;
 }
 
+
 export const actualizarDNI = async(id,dni) =>{
     await verificarDNIDuplicado(id,dni);
     const [metadata] = await usuarioModelo.updateDNI(id,dni);
@@ -67,6 +74,7 @@ export const actualizarDNI = async(id,dni) =>{
     return metadata;
 }
 
+
 export const actualizarSueldo = async(id,sueldo)=>{
     verificarSueldo(sueldo);
     const [metadata] = await usuarioModelo.updateSueldo(id,sueldo);
@@ -76,7 +84,17 @@ export const actualizarSueldo = async(id,sueldo)=>{
     return metadata;
 }
 
+export const actualizarActividad = async(id,actividad)=>{
+    console.log(actividad);
+    const [metadata] = await usuarioModelo.updateActividad(id,actividad);
+    if(metadata.affectedRows === 0){
+        throw new excepcion.noExisteEnsistemaError("No se modifico la actividad porque no existe");
+    }
+    return metadata;
+}
+
 /* Servicio de DELETE */
+
 
 export const eliminarEmpleado = async(id)=>{
     const [metadata] = await usuarioModelo.deleteEmpleado(id);
@@ -87,6 +105,7 @@ export const eliminarEmpleado = async(id)=>{
     const [metada] = await usuarioModelo.deleteUsuario(id);
     return metadata;
 } 
+
 
 
 /* Helpers de verificaciones */

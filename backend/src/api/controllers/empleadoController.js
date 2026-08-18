@@ -80,7 +80,12 @@ export const actualizarSueldoDeUnEmpleado = async(req,res)=>{
 }
 
 export const actualizarActividadDeEmpleado = async(req,res)=>{
-
+    try {
+        const metadata = await usuarioServicio.actualizarActividad(req.body.id, req.body.activo);
+        res.status(200).json({mensaje: "La modificacion de actividad fue un exito"});
+    } catch (error) {
+        analizarError(error,res);
+    }
 }
 
 /*  DELETE */

@@ -38,13 +38,13 @@ export const selectUsuariosPorNombre = (nombre) =>{
 }
 
 export const selectEmpleados = ()=>{
-    const sql = "SELECT * FROM empleados";
+    const sql = `SELECT u.${COL.NOMBRE}, u.${COL.APELLIDO}, u.${COL.DNI}, u.${COL.MAIL},u.${COL.ACTIVO}, e.${COL_EMP.SUELDO}
+                FROM ${USUARIOS} u
+                INNER JOIN ${EMPLEADOS} e ON e.${COL_EMP.ID} = u.${COL.ID};`
     return conexion.query(sql);
 };
 
-export const selectEmpleadoPorID = (id)=>{
-    const sql = `SELECT ${COL.DNI}, ${COL.NOMBRE}, ${COL.APELLIDO} FROM ${USUARIOS} WHERE ${COL.ID} = ?`
-    return conexion.query(sql, [id]);
+export const selectDatosPersonales = (id)=>{
 }
 
 export const verificarExisteEmpleado = (id)=>{
@@ -71,7 +71,6 @@ export const selectUsuariosPorDNI = (dni)=>{
     return conexion.query(sql, [dni]);
 }
 
-
 export const deleteUsuario = (id)=>{
     const sql = `DELETE FROM ${USUARIOS} WHERE ${COL.ID} = ?`;
     return conexion.query(sql, [id]);
@@ -94,15 +93,3 @@ export const updateDNI = (id, dni) =>{
     const sql = `UPDATE ${USUARIOS} SET ${COL.DNI} = ? WHERE ${COL.ID} = ?`
     return conexion.query(sql, [dni,id]);
 } 
-
-/* LLamadas a base de datos de verificaciones */
-
-export const estaMailOcupado = (mail, id) =>{
-    const sql = `SELECT ${COL.ID},${COL.NOMBRE}, ${COL.APELLIDO}, ${COL.MAIL} FROM ${USUARIOS} WHERE ${COL.MAIL} = ? AND ${COL.ID} != ?`
-    return conexion.query(sql, [mail,id]);
-}
-
-export const estaDNIOcupado = (id,dni)=>{
-    const sql = `SELECT ${COL.ID},${COL.NOMBRE}, ${COL.APELLIDO}, ${COL.DNI} FROM ${USUARIOS} WHERE ${COL.DNI} = ? AND ${COL.ID} != ?`
-    return conexion.query(sql, [dni,id]);
-}

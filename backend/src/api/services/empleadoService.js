@@ -1,4 +1,4 @@
-import * as usuarioModelo from "../models/usuarioModel.js";
+import * as usuarioModelo from "../models/empleadoModel.js";
 import * as excepcion from "../excepciones/excepcion.js";
 
 /* Si hay un metodo que modifique tabla o varias, secuencialmente y no en una misma query, no implemente nada si falla la primera query y la segunda no.
@@ -17,12 +17,11 @@ export const crearEmpleado = async(nombre,apellido,mail,contrasenia,dni,sueldo, 
     const [metadataUser] = await usuarioModelo.insertUsuario(nombre,apellido,mail,contrasenia,dni,activo);
     console.log(metadataUser);
     if(metadataUser.affectedRows === 0){
-        throw new excepcion.errorConEstado("Ocurrio un error inesperado y raro");
+        throw new excepcion.errorConEstado("No se pudo ejecutar la accion, tal parece que el USUARIO no a sido agregado");
     }
     const [metadataEmp] = await usuarioModelo.insertEmpleado(metadataUser.insertId, sueldo);
-0
     if(metadataEmp.affectedRows === 0 ){
-        throw new excepcion.errorConEstado("Ocurrio un error grave e inesperado");
+        throw new excepcion.errorConEstado("No se pudo ejecutar la accion, tal parece que el EMPLEADO no a sido agregado pero si el usuario");
     }
 
     return metadataEmp;
@@ -76,34 +75,22 @@ export const eliminarEmpleado = async(id)=>{
     if(metadata.affectedRows === 0){
         throw new excepcion.noExisteEnsistemaError("El Empleado no existe en sistema");
     }
+    const [metada] = await usuarioModelo.deleteUsuario(id);
     return metadata;
 } 
 
 
-// to do: Eliminar esta funcion e cambiar nombre archivo usuarioService por empleadoService y refactorizar todo para que solo se pueda crear un empleado y eliminar un empleado.
-export const eliminarUsuario =  async(id)=>{
-    await eliminarEmpleado(id);
-    const [metadata] = await eliminarUsuario(id);
-    console.log(metadata);
-    if(metada.affectedRows === 0){
-        throw new excepcion.noExisteEnsistemaError("El usuario no existe en sistema");
-    }
-    return metadata;
-}
-
 /* Helpers de verificaciones */
 async function verificarMailDuplicado(id, mail){
-    const [usuario] = await usuarioModelo.estaMailOcupado(mail,id);
-    if(usuario.length != 0){
+    const [usuario] = await usuarioModelo.selectUsuarioPorMail(mail);
+    if(usuario.length != 0 && usuario[0].id != id){
         throw new excepcion.yaExisteEnSistemaError(`El mail esta ocupado`, usuario[0]);
     }
 }
 
 async function verificarDNIDuplicado(id, dni){
-    const [usuario] = await usuarioModelo.estaDNIOcupado(id,dni);
-    console.log(usuario);
-    if(usuario.length != 0){
-        console.log("LLEGO");
+    const [usuario] = await usuarioModelo.selectUsuariosPorDNI(dni);
+    if(usuario.length != 0 && usuario[0].id != id){
         throw new excepcion.yaExisteEnSistemaError("El dni esta ocupado", usuario[0]);
     }
 }

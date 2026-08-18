@@ -1,6 +1,6 @@
 import { json } from "express";
-import * as usuarioModelo from "../models/usuarioModel.js";
-import * as usuarioServicio from "../services/usuarioService.js";
+import * as usuarioModelo from "../models/empleadoModel.js";
+import * as usuarioServicio from "../services/empleadoService.js";
 import * as excepcion from "../excepciones/excepcion.js";
 
 
@@ -26,16 +26,6 @@ export const obtenerEmpleados = async(req,res)=>{
         analizarError(error, res)
     }
 }
-export const obtenerEmpleado = async (req,res)=>{}
-
-export const obtenerUsuarios = async(req,res)=>{
-    try {
-        const [usuarios] = await usuarioModelo.selectUsuarios();
-        res.status(200).json({payload: usuarios});
-    } catch (error) {
-        analizarError(error,res);
-    }
-}
 export const obtenerUsuarioPorDNI = async(req,res) =>{
     try {
         const [usuario, metadata] = await usuarioServicio.obtenerUsuarioPorDNI(req.body.dni);
@@ -54,9 +44,12 @@ export const obtenerUsuariosPorNombre = async(req,res) =>{
     }
 }
 
+export const verMisDatosPersonales = async(req,res)=>{
+}
+
 /* PUT */
 
-export const actualizarDatosPersonales = async(req,res)=>{
+export const actualizarMisDatosPersonales = async(req,res)=>{
     try {
         const {id, nombre, apellido, mail, contrasenia} = req.body
         const metadata = await usuarioServicio.actualizarDatosPersonales(id, nombre, apellido, mail, contrasenia);
@@ -77,18 +70,17 @@ export const actualizarDNI = async(req,res)=>{
     }
 }
 
-/*  DELETE */
+export const actualizarSueldoDeUnEmpleado = async(req,res)=>{
 
-export const eliminarUsuario = async(req,res) =>{
-    try {
-        const metadata = await usuarioServicio.eliminarUsuario(req.body.id);
-        res.status(200).json({mensaje: "Usuario fue eliminado exitosamente"});
-    } catch (error) {
-        analizarError(error,res);
-    }
 }
 
-export const eliminarEmpleado = async(req,res)=>{
+export const actualizarActividadDeEmpleado = async(req,res)=>{
+
+}
+
+/*  DELETE */
+
+export const eliminarUnEmpleado = async(req,res)=>{
     try {
         const metadata = await usuarioServicio.eliminarEmpleado(req.body.id);
         res.status(200).json({mensaje: "Eliminacion de empleado existosa"});

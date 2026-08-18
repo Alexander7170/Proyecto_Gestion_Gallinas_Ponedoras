@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {eliminarUnEmpleado,obtenerUsuariosPorNombre,obtenerUsuarioPorDNI, actualizarDNI, crearEmpleado, obtenerEmpleados, actualizarMisDatosPersonales, verMisDatosPersonales} from "../controllers/empleadoController.js";
+import {eliminarUnEmpleado,actualizarSueldoDeUnEmpleado,obtenerUsuariosPorNombre,obtenerUsuarioPorDNI, actualizarDNI, crearEmpleado, obtenerEmpleados, actualizarMisDatosPersonales, verMisDatosPersonales} from "../controllers/empleadoController.js";
 
 const router = Router()
 
@@ -15,6 +15,7 @@ router.get("/nombre", obtenerUsuariosPorNombre);
 router.post("/", crearEmpleado);
 router.put("/datosPersonales", actualizarMisDatosPersonales);
 router.put("/dni", actualizarDNI);
+router.put("/sueldo", actualizarSueldoDeUnEmpleado);
 router.delete("/", eliminarUnEmpleado);
 
 export default router;

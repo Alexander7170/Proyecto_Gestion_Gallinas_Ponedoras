@@ -1,4 +1,4 @@
-import { json } from "express";
+import e, { json } from "express";
 import * as usuarioModelo from "../models/empleadoModel.js";
 import * as usuarioServicio from "../services/empleadoService.js";
 import * as excepcion from "../excepciones/excepcion.js";
@@ -71,7 +71,12 @@ export const actualizarDNI = async(req,res)=>{
 }
 
 export const actualizarSueldoDeUnEmpleado = async(req,res)=>{
-
+    try {
+        const metadata = await usuarioServicio.actualizarSueldo(req.body.id, req.body.sueldo);
+        res.status(200).json({mensaje: "La modificacion del sueldo fue un exito"});
+    } catch (error) {
+        analizarError(error,res);
+    }
 }
 
 export const actualizarActividadDeEmpleado = async(req,res)=>{

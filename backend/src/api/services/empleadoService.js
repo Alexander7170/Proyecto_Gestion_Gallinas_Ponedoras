@@ -12,7 +12,7 @@ import * as excepcion from "../excepciones/excepcion.js";
 export const crearEmpleado = async(nombre,apellido,mail,contrasenia,dni,sueldo, activo)=>{
     await verificarMailDuplicado(0, mail);
     await verificarDNIDuplicado(0, dni);
-    verificarSueldoNegativo(sueldo);
+    verificarSueldo(sueldo);
 
     const [metadataUser] = await usuarioModelo.insertUsuario(nombre,apellido,mail,contrasenia,dni,activo);
     console.log(metadataUser);
@@ -67,6 +67,15 @@ export const actualizarDNI = async(id,dni) =>{
     return metadata;
 }
 
+export const actualizarSueldo = async(id,sueldo)=>{
+    verificarSueldo(sueldo);
+    const [metadata] = await usuarioModelo.updateSueldo(id,sueldo);
+    if(metadata.affectedRows === 0){
+        throw new excepcion.noExisteEnsistemaError("No se modifico el sueldo porque no existe el usuario");
+    }
+    return metadata;
+}
+
 /* Servicio de DELETE */
 
 export const eliminarEmpleado = async(id)=>{
@@ -95,8 +104,7 @@ async function verificarDNIDuplicado(id, dni){
     }
 }
 
-function verificarSueldoNegativo(sueldo){
-    if(sueldo < 0){
-        throw new excepcion.sueldoNegativo();
-    }
+function verificarSueldo(sueldo){
+    if(sueldo == undefined)throw new Error("El sueldo es undefined o null");
+    if(sueldo < 0)throw new excepcion.sueldoNegativo();
 }
